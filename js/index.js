@@ -19,6 +19,7 @@ $(document).ready(function() {
 //焦点图自动切换
 function funchangImg() {
     changImgindex++;
+    if (changImgindex > 2) { changImgindex = 0; }
     changImg(changImgindex);
 }
 //焦点图左右切换按钮
