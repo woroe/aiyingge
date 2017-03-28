@@ -1,21 +1,25 @@
 var screenWid = $(window).width();
+var imgwid=screenWid/5;
+$(".contentone").css({"padding-left":imgwid/10+"px"});
+$(".contentone .grid_3").css({"width":imgwid+"px","margin-left":imgwid/10+"px","margin-right":imgwid/10+"px"});
+
 changwid();
 $(window).resize(function() {
     screenWid = $(window).width();
     changwid();
 });
-
 function changwid() {
     $(".oneMenu").width(screenWid);
     $("header").width(screenWid);
     $(".content").width(screenWid);
     $("footer").width(screenWid);
+    var imgwid=screenWid/5;
+    $(".contentone").css({"padding-left":imgwid/10+"px"});
+    $(".contentone .grid_3").css({"width":imgwid+"px","margin-left":imgwid/10+"px","margin-right":imgwid/10+"px"});
+    
 }
 var changImgindex = 0;
 var timeImg = window.setInterval(funchangImg, 5000); // 注意函数名没有引号和括弧！ 
-$(document).ready(function() {
-
-});
 //焦点图自动切换
 function funchangImg() {
     changImgindex++;
@@ -59,5 +63,22 @@ function changImg(index) {
         $(arrli[i]).fadeOut("slow");
         $(dianli[i]).attr("class", "");
     }
-
 }
+
+//回到顶部
+function goToByScroll(id) {
+            $('html,body').animate({
+                scrollTop: $("#" + id).offset().top
+            }, 'slow');
+        }
+$(document).ready(function() {
+    var imgli = $('#carousel').find("li");
+    var imgcount=imgli.length/8;
+    if(imgli%8!=0) imgcount++;
+    $(".elastislide-prev").click(function(){
+        $("#carousel").slideToggle();
+    });
+    $(".elastislide").click(function(){
+        $("p").slideToggle();
+    });
+});
