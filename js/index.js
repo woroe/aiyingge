@@ -12,6 +12,7 @@ function changwid() {
     $(".oneMenu").width(screenWid);
     $("header").width(screenWid);
     $(".content").width(screenWid);
+    changebottomimg();//$('#carousel').find("li").css({"width":(screenWid-120)*0.12+"px"});
     $("footer").width(screenWid);
     var imgwid=screenWid/5;
     $(".contentone").css({"padding-left":imgwid/10+"px"});
@@ -71,14 +72,27 @@ function goToByScroll(id) {
                 scrollTop: $("#" + id).offset().top
             }, 'slow');
         }
+//设置底部 滑动图片的大小 上下距离
+function changebottomimg(){
+    var wid=(screenWid-120)*0.121;
+    var hig=(114-wid*0.82)/2;
+    $('#carousel').find("li").css({"width":wid+"px","padding-top":hig+"px"});
+}
+changebottomimg();
+//底部 左右图片划动
 $(document).ready(function() {
-    var imgli = $('#carousel').find("li");
-    var imgcount=imgli.length/8;
-    if(imgli%8!=0) imgcount++;
-    $(".elastislide-prev").click(function(){
-        $("#carousel").slideToggle();
+    var imgliArr = $('#carousel').find("li");
+    var imgcount=imgliArr.length/8;
+    if(imgliArr.length%8!=0) imgcount++;//取模 求余数 
+    var nowImg=1;
+    $(".elastislide-next").click(function(){
+        nowImg++;if(nowImg>=imgcount){nowImg=imgcount-1;}
+        var offset=-(screenWid-120)*nowImg;
+        $("#carousel").stop().animate({left:offset},"slow",function(){});
     });
-    $(".elastislide").click(function(){
-        $("p").slideToggle();
+    $(".elastislide-prev").click(function(){
+        nowImg--;if(nowImg<0){nowImg=0;}
+        var offset=-(screenWid-120)*nowImg-20;
+        $("#carousel").stop().animate({left:offset},"slow",function(){});
     });
 });
