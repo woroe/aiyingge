@@ -2,7 +2,7 @@ var screenWid = $(window).width();
 var imgwid=screenWid/5;
 $(".contentone").css({"padding-left":imgwid/10+"px"});
 $(".contentone .grid_3").css({"width":imgwid+"px","margin-left":imgwid/10+"px","margin-right":imgwid/10+"px"});
-
+changetopmenu(0);
 changwid();
 $(window).resize(function() {
     screenWid = $(window).width();
@@ -66,12 +66,6 @@ function changImg(index) {
     }
 }
 
-//回到顶部
-function goToByScroll(id) {
-            $('html,body').animate({
-                scrollTop: $("#" + id).offset().top
-            }, 'slow');
-        }
 //设置底部 滑动图片的大小 上下距离
 function changebottomimg(){
     var wid=(screenWid-120)*0.121;
